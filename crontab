@@ -1,0 +1,1 @@
+* 0 * * 1-5 docker system prune -a -f >/dev/null 2>&1

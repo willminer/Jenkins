@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    image: "cchsreg.com:5000/jenkins"
+    ports:
+      - "8081:8080"
+      - "50000:50000"
+    networks:
+      - back-tier
+    environment:
+      - HOST_IP=${HOST_IP}
+      - REDIS_HOST_IP=${REDIS_HOST_IP}
+      - ETCD_HOST_IP=${ETCD_HOST_IP}
+      - MONGO_HOST_IP=${MONGO_HOST_IP}
+      - SERVICE_NAME=TenantService
+      - STAGE=${STAGE}
+      - CONFIG_HOST=${CONFIG_HOST}
+      - CONFIG_PORT=${CONFIG_PORT}
+      - INTERLOCK_DATA={"hostname":"tenant", "domain":"digitalfunk.io"}
+networks:
+    back-tier:
+        external: true
